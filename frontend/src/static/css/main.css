@@ -1,0 +1,155 @@
+.frame-all {
+    background: #eff4f8;
+}
+.frame-main {
+    background: #fff;
+}
+.nickname{color:#000000;float:right;}
+.image{ float: right}
+.text{
+  float:left;
+  font: 12px/2.5 "Microsoft YaHei", arial, SimSun, 宋体;
+}
+.g-button-right {
+    position: relative;
+    right: -1px;
+    display: block;
+    height: 29px;
+    padding-right: 15px;
+    line-height: 29px;
+    text-align: center;
+    cursor: pointer;
+}
+.a-folder {
+    color: #666;
+    text-decoration: none;
+}
+.g-button {
+    position: relative;
+    display: inline-block;
+    height: 30px;
+    margin: 0 5px;
+    padding-left: 15px;
+    font-size: 12px;
+    line-height: 30px;
+    vertical-align: top;
+    white-space: nowrap;
+    text-decoration: none;
+    border: 1px solid #d4d4d4;
+    color: #666;
+    outline: 0;
+    border-radius: 2px;
+}
+div{
+  display: block;
+}
+ul{
+  display: block;
+  width:100%;/*这里设置为确定的值也可以*/
+  height:30px;
+}
+li{
+  cursor: pointer;
+  float: left;
+  display: inline-block;
+  list-style: none;
+  text-align: -webkit-match-parent;
+  height:30px;
+}
+.headli{
+  cursor: pointer;
+  float: left;
+  display: inline-block;
+  list-style: none;
+  text-align: -webkit-match-parent;
+  height:30px;
+}
+.headli:hover{
+  cursor: pointer;
+  float: left;
+  display: inline-block;
+  list-style: none;
+  text-align: -webkit-match-parent;
+  height:30px;
+  background-color: #EAFFFF;
+}
+#layoutApp {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-width: 1103px;
+    _width: 100%;
+    _height: 630px;
+}
+#layoutMain {
+    border-top: 1px solid #d8dfea;
+    border-left: 1px solid #d8dfea;
+    border-right: 1px solid #d8dfea;
+    margin-left: -1px;
+}
+#layoutMain {
+    top: 62px;
+    left: 194px;
+    bottom: 0px;
+    right: 10px;
+    z-index: 1;
+    background: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: absolute;
+}
+#layoutList {
+    border-top: 1px solid #d8dfea;
+    border-left: 1px solid #d8dfea;
+    border-right: 1px solid #d8dfea;
+    margin-left: -1px;
+}
+#layoutList {
+    top: 70px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 1;
+    background: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: absolute;
+}
+#layoutList-path {
+  padding-left: 16px;
+  background-color: #fff;
+  height: 16px;
+  line-height: 16px;
+  margin-bottom: 5px;
+}
+#layoutList-but {
+  padding-left: 16px;
+  background-color: #fff;
+  height: 70px;
+  line-height: 16px;
+  margin-bottom: 5px;
+}
+#layoutList-head {
+  padding-left: 16px;
+  background-color: #fff;
+  height: 30px;
+  line-height: 16px;
+  margin-bottom: 5px;
+}
+#layoutList-ul {
+  padding-left: 16px;
+  background-color: #fff;
+  height: 30px;
+  line-height: 16px;
+  margin-bottom: 5px;
+}
+#layoutList-ul:hover {
+  padding-left: 16px;
+  background-color: #EAFFFF;
+  height: 30px;
+  line-height: 16px;
+  margin-bottom: 5px;
+}
