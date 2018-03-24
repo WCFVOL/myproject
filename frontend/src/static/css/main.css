@@ -110,7 +110,7 @@ li{
 #layoutList {
     top: 70px;
     left: 0px;
-    bottom: 0px;
+    bottom: 1px;
     right: 0px;
     z-index: 1;
     background: #fff;
@@ -137,7 +137,13 @@ li{
   background-color: #fff;
   height: 30px;
   line-height: 16px;
-  display: block;
+  margin-bottom: 5px;
+}
+#layoutList-ul-head{
+  padding-left: 0px;
+  background-color: #fff;
+  height: 30px;
+  line-height: 16px;
   margin-bottom: 5px;
 }
 #layoutList-ul {

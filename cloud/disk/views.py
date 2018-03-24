@@ -57,6 +57,10 @@ def list(request) :
                 listid.append(e.id)
                 size.append(-1)
                 update.append(e.update)
+        list.reverse()
+        listid.reverse()
+        size.reverse()
+        update.reverse()
         cSize = []
         for s in size:
             if s == -1:

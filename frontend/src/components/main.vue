@@ -24,8 +24,8 @@
             <!--返回上一级| 全部文件 path -->
         </div>
         <!-- 第二层，显示文件名，文件大小，更新日期 -->
-        <div id="layoutList-head">
-          <ul id="layoutList-ul">
+        <div id = "layoutList-head">
+          <ul id="layoutList-ul-head">
             <li class="headli" style="width:60%">
               <span class="text" >文件名</span>
             </li>
@@ -38,7 +38,7 @@
           </ul>
         </div>
         <!-- 第三层，显示文件列表 -->
-        <div id="layoutList-head" style="overflow:auto;height:437px">
+        <div id="layoutList-head" style="overflow:auto;height:400px">
           <ul id="layoutList-ul" v-for="e in all" :key="e.size">
             <li style="width:60%">
               <div v-if = "e.ok === true">
@@ -146,7 +146,7 @@ export default {
     })
   },
   methods: {
-    quit() {
+    quit () {
       this.$router.push({path: '/'})
     },
     refresh () {
