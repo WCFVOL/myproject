@@ -17,13 +17,13 @@ from cloud.settings import HADOOP_HOST,HADOOP_PORT,HADOOP_USERNAME,MEDIA_ROOT
 def count(num) :
     ans = str(num)+"B";
     if num >= 1024 :
-        ans = str(round(num/1024,2)) + "K"
+        ans = str(num//1024) + "K"
         num = num/1024
     if num >= 1024 :
-        ans = str(round(num/1024,2)) + "M"
+        ans = str(num//1024) + "M"
         num = num/1024
     if num >= 1024 :
-        ans = str(round(num/1024,2)) + "G"
+        ans = str(num//1024) + "G"
         num = num/1024
     return ans
 @csrf_exempt
