@@ -85,13 +85,13 @@ li{
     _height: 630px;
 }
 #layoutMain {
-    border-top: 1px solid #d8dfea;
+    border-top:  1px solid #d8dfea;
     border-left: 1px solid #d8dfea;
     border-right: 1px solid #d8dfea;
     margin-left: -1px;
 }
 #layoutMain {
-    top: 62px;
+    top: 82px;
     left: 194px;
     bottom: 0px;
     right: 10px;
@@ -137,17 +137,18 @@ li{
   background-color: #fff;
   height: 30px;
   line-height: 16px;
+  display: block;
   margin-bottom: 5px;
 }
 #layoutList-ul {
-  padding-left: 16px;
+  padding-left: 0px;
   background-color: #fff;
   height: 30px;
   line-height: 16px;
   margin-bottom: 5px;
 }
 #layoutList-ul:hover {
-  padding-left: 16px;
+  padding-left: 0px;
   background-color: #EAFFFF;
   height: 30px;
   line-height: 16px;

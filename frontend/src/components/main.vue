@@ -1,7 +1,11 @@
 <template lang="html">
   <div class="frame-all" id="layoutApp">
-    <p class="nickname">欢迎{{ this.$parent.nickname }}!</p>
     <img class="image" :src="src" alt="头像" width="70" height="70"/>
+    <div class="nickname">
+      <p>欢迎{{ this.$parent.nickname }}!</p>
+      <a href="#" @click="quit()">登出</a>
+    </div>
+
     <div class="frame-main" id="layoutMain">
       <!-- 新建文件夹等按钮 -->
       <div id="layoutList-but" style="position: absolute; top: 0px; padding-top: 18px; line-height: normal; padding-left: 0px; width: auto; visibility: visible;">
@@ -21,7 +25,7 @@
         </div>
         <!-- 第二层，显示文件名，文件大小，更新日期 -->
         <div id="layoutList-head">
-          <ul id="layoutList-head">
+          <ul id="layoutList-ul">
             <li class="headli" style="width:60%">
               <span class="text" >文件名</span>
             </li>
@@ -55,7 +59,7 @@
             </li>
             <li style="width:23%">
               <span class="text">{{ e.update }}</span>
-              <button type="button" name="button" @click="Download(e.listid, e.list)">下载</button>
+              <button type="button" name="button" v-if="e.size !== -1" @click="Download(e.listid, e.list)">下载</button>
             </li>
           </ul>
         </div>
@@ -142,6 +146,9 @@ export default {
     })
   },
   methods: {
+    quit() {
+      this.$router.push({path: '/'})
+    },
     refresh () {
       if (this.$parent.nickname === undefined) {
         this.$router.push({path: '/'})
