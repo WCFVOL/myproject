@@ -14,8 +14,19 @@ import hashlib
 from .hdfs import WebHdfs
 from cloud.settings import HADOOP_HOST,HADOOP_PORT,HADOOP_USERNAME,MEDIA_ROOT
 # Create your views here.
+def count(num) :
+    ans = str(num)+"B";
+    if num >= 1024 :
+        ans = str(round(num/1024,2)) + "K"
+        num = num/1024
+    if num >= 1024 :
+        ans = str(round(num/1024,2)) + "M"
+        num = num/1024
+    if num >= 1024 :
+        ans = str(round(num/1024,2)) + "G"
+        num = num/1024
+    return ans
 @csrf_exempt
-
 def list(request) :
     if request.method == 'POST' :
         post = json.loads(request.body.decode('utf-8'))
@@ -46,9 +57,14 @@ def list(request) :
                 listid.append(e.id)
                 size.append(-1)
                 update.append(e.update)
-
+        cSize = []
+        for s in size:
+            if s == -1:
+                cSize.append(-1);
+            else :
+                cSize.append(count(s));
         return JsonResponse({'data':'ok' ,'list': list,
-                             'listid': listid, 'size':size,'update':update})
+                             'listid': listid, 'size': cSize,'update':update})
 
 
 @csrf_exempt

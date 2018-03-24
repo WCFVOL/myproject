@@ -47,7 +47,6 @@
               </div>
               <div v-else>
                 <span class="text">{{ e.list }}</span>
-                <button type="button" name="button" @click="Download(e.listid, e.list)">下载</button>
               </div>
             </li>
             <li style="width:16%">
@@ -56,6 +55,7 @@
             </li>
             <li style="width:23%">
               <span class="text">{{ e.update }}</span>
+              <button type="button" name="button" @click="Download(e.listid, e.list)">下载</button>
             </li>
           </ul>
         </div>
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import axios from 'axios'z
+import axios from 'axios'
 axios.defaults.headers = {
   'Content-Type': 'application/x-www-form-urlencoded'
 }
@@ -165,7 +165,7 @@ export default {
       })
     },
     Download (id, name) {
-      let url = BASE_URL+'/vueapi/download?fileid=' + id + '&filename=' + name
+      let url = BASE_URL + '/vueapi/download?fileid=' + id + '&filename=' + name
       window.open(url)
     },
     Uploadstart () {
