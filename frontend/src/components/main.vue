@@ -38,7 +38,7 @@
           </ul>
         </div>
         <!-- 第三层，显示文件列表 -->
-        <div id="layoutList-head" style="overflow:auto;height:400px">
+        <div id="layoutList-head" style="overflow:auto;height:90%">
           <ul id="layoutList-ul" v-for="e in all" :key="e.size">
             <li style="width:60%">
               <div v-if = "e.ok === true">

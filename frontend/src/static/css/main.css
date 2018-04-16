@@ -91,10 +91,10 @@ li{
     margin-left: -1px;
 }
 #layoutMain {
-    top: 82px;
-    left: 194px;
-    bottom: 0px;
-    right: 10px;
+    top: 13%;
+    left: 7%;
+    bottom: 2%;
+    right: 1%;
     z-index: 1;
     background: #fff;
     border-top-left-radius: 5px;
