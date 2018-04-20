@@ -20,7 +20,13 @@ from django.conf.urls.static import static
 #APP相关
 from backend import views as backend_view
 from disk import views as disk_view
+from django.conf.urls import url, include
+from rest_framework import routers
 
+router = routers.DefaultRouter()
+router.register(r'admin_users', backend_view.AdminUserViewSet)
+router.register(r'groups', backend_view.GroupViewSet)
+router.register(r'users', backend_view.UserViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^vueapi/register',backend_view.register),
@@ -30,6 +36,8 @@ urlpatterns = [
     url(r'^vueapi/enterfolder',disk_view.enterfolder),
     url(r'^vueapi/upload',disk_view.upload),
     url(r'^vueapi/download',disk_view.download),
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     #url(r'^$', TemplateView.as_view(template_name="index.html")),
     #url(r'^api/', include('backend.urls', namespace='api'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

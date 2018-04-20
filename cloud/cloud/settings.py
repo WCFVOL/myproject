@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'backend',
     'corsheaders',
     'disk',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

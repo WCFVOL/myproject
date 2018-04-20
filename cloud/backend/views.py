@@ -6,6 +6,33 @@ from disk.models import Folder
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.utils import timezone as datetime
+from django.contrib.auth.models import User as AdminUser, Group
+from rest_framework import viewsets
+from backend.serializers import AdminUserSerializer, GroupSerializer, UserSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class AdminUserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = AdminUser.objects.all().order_by('-date_joined')
+    serializer_class = AdminUserSerializer
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
 @csrf_exempt
 def register(request) :
     if request.method == "POST":
@@ -40,4 +67,4 @@ def login(request) :
         if(user.password==password):
             return JsonResponse({'data': 'ok','username': str(user.username),'nickname':
                                  str(user.nickname),'image': str(user.image),'email':str(user.email),'userID':str(user.userID)})
-    return JsonResponse({'data': 'ok'})
+    return JsonResponse({'data': 'no'})
