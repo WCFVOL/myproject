@@ -70,6 +70,33 @@ def list(request) :
         return JsonResponse({'data':'ok' ,'list': list,
                              'listid': listid, 'size': cSize,'update':update})
 
+@csrf_exempt
+def findfile (request):
+    if request.method == 'POST' :
+        post = json.loads(request.body.decode('utf-8'))
+        userid = post.get('userID')
+        findfile_name = post.get('findfile_name')
+        qlist = Folder.objects.filter(userid=userid, foldername =findfile_name)
+        list = []
+        listid = []
+        size = []
+        update = []
+        for e in qlist:
+            list.append(e.foldername)
+            listid.append(e.id)
+            size.append(0)
+            update.append(e.update)
+        qlist = File.objects.filter(userid=userid, foldername=findfile_name)
+        for e in qlist:
+            list.append(e.foldername)
+            listid.append(e.id)
+            size.append(e.size)
+            update.append(e.update)
+        return JsonResponse({'data': 'ok', 'list': list,
+                             'listid': listid, 'size': size, 'update': update})
+    else :
+        return JsonResponse({'data': 'no'})
+
 
 @csrf_exempt
 def newfolder (request):
@@ -142,7 +169,6 @@ def upload(request) :
         nowid = post.get('nowid')
         upfile = request.FILES.get('file')
         hash_md5 = hashlib.md5()
-        print('yes?')
         f=None
         for chunk in iter(lambda: upfile.read(4096), b""):
             hash_md5.update(chunk)#累加
@@ -161,5 +187,4 @@ def upload(request) :
         file = File(userid=userid,foldername=upfile.name,fatherid=nowid,update=datetime.now(),
                     size=upfile.size,md5=hash)
         file.save()
-
         return JsonResponse({'data':'ok'})

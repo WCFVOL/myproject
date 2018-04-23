@@ -35,7 +35,7 @@
         <el-container >
           <el-header style="height:70px;padding: 0px;margin : 0;">
             <ul style="width:1000px;list-style: none;padding: 0px;margin : 0;">
-              <li style="float:left;display: inline;width:270px;list-style: none;padding: 0px;margin : 0;">
+              <li style="height:70px;float:left;display: inline;width:270px;list-style: none;padding: 0px;margin : 0;">
                 <a href="javascript:void(0)" style="display: inline-block;text-decoration:none" @click="NewFolder">
                   <el-button style="display: inline;postion:absolute;left:0;"type="primary" icon="el-icon-edit">新建文件夹</el-button>
                 </a>
@@ -43,6 +43,15 @@
                   <el-button type="primary">上传<i class="el-icon-upload el-icon--right"></i></el-button>
                   <span class="text">{{progress}}</span>
                 </a>
+              </li>
+              <li style="height:70px;display: inline;width:400px">
+                <el-input
+                  placeholder="搜索文件"
+                  style="width:200px"
+                  prefix-icon="el-icon-search"
+                  v-model="findfile_name">
+                </el-input>
+                <el-button type="primary" icon="el-icon-search" style="width:90px;display: inline;"@click="findfile">搜索</el-button>
               </li>
             </ul>
           </el-header>
@@ -111,6 +120,7 @@ export default {
       size: [], // 文件大小
       update: [], // 更新时间
       debug: '', // 调试bug使用
+      findfile_name: '',
       src: BASE_URL + '/media/' + this.$parent.image // 头像src
     }
   },
@@ -120,30 +130,30 @@ export default {
     }
   },
   beforeRouteUpdate (to, from, next) {
-  // just use `this`
-  this.nowid = to.query.id
-  if (this.$parent.nickname === undefined) {
-    this.$router.push({path: '/'})
-  }
-  // alert(this.nowid)
-  let data = {'userID': this.$parent.userID, 'nowid': this.nowid}
-  this.path.push('/')
-  axios.post('/vueapi/list', data).then((res) => {
-    // console.log(res)
-    if (res.data['data'] === 'ok') {
-      this.all = []
-      this.list = res.data['list']
-      this.listid = res.data['listid']
-      this.size = res.data['size']
-      this.update = res.data['update']
-      for (var i = 0; i < this.list.length; i++) {
-        this.all.push({'list': this.list[i], 'listid': this.listid[i], 'size': this.size[i], 'update': this.update[i], 'ok': false})
-      }
-    } else {
-      this.debug = res.data['data']
+    // just use `this`
+    this.nowid = to.query.id
+    if (this.$parent.nickname === undefined) {
+      this.$router.push({path: '/'})
     }
-  })
-  next()
+    // alert(this.nowid)
+    let data = {'userID': this.$parent.userID, 'nowid': this.nowid}
+    this.path.push('/')
+    axios.post('/vueapi/list', data).then((res) => {
+      // console.log(res)
+      if (res.data['data'] === 'ok') {
+        this.all = []
+        this.list = res.data['list']
+        this.listid = res.data['listid']
+        this.size = res.data['size']
+        this.update = res.data['update']
+        for (var i = 0; i < this.list.length; i++) {
+          this.all.push({'list': this.list[i], 'listid': this.listid[i], 'size': this.size[i], 'update': this.update[i], 'ok': false})
+        }
+      } else {
+        this.debug = res.data['data']
+      }
+    })
+    next()
   },
   created () {
     if (this.$parent.nickname === undefined) {
@@ -152,6 +162,24 @@ export default {
     this.refresh()
   },
   methods: {
+    findfile () {
+      let data = {'userID': this.$parent.userID, 'findfile_name': this.findfile_name}
+      axios.post('/vueapi/findfile', data).then((res) => {
+        // console.log(res)
+        if (res.data['data'] === 'ok') {
+          this.all = []
+          this.list = res.data['list']
+          this.listid = res.data['listid']
+          this.size = res.data['size']
+          this.update = res.data['update']
+          for (var i = 0; i < this.list.length; i++) {
+            this.all.push({'list': this.list[i], 'listid': this.listid[i], 'size': this.size[i], 'update': this.update[i], 'ok': false})
+          }
+        } else {
+          this.debug = res.data['data']
+        }
+      })
+    },
     quit () {
       this.$router.push({path: '/'})
     },
