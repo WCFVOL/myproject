@@ -14,7 +14,7 @@
               <el-menu default-active="3" class="el-menu-vertical-demo">
                 <el-menu-item index="1">
                   <i class="el-icon-menu"></i>
-                  <a href="/#/maintest/?id=0" style="text-decoration:none"><span slot="title">全部文件</span></a>
+                  <a href="/#/maintest/?id=0" style="text-decoration:none"@click="refresh()"><span slot="title">全部文件</span></a>
                 </el-menu-item>
                 <el-menu-item index="2">
                   <i class="el-icon-picture"></i>
