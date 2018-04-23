@@ -4,10 +4,17 @@ import Router from 'vue-router'
 import login from '@/components/login'
 import main from '@/components/main'
 import NotFound from '@/components/NotFound'
+import maintest from '@/components/maintest'
+import test from '@/components/test'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/test',
+      name: 'test',
+      component: test
+    },
     {
       path: '/',
       name: 'login',
@@ -26,6 +33,11 @@ export default new Router({
       path: '/404',
       name: '404',
       component: NotFound
+    },
+    {
+      path: '/maintest',
+      name: 'maintest',
+      component: maintest
     },
     {
       path: '*',

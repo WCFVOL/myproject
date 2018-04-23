@@ -9,11 +9,11 @@
     <div class="frame-main" id="layoutMain">
       <!-- 新建文件夹等按钮 -->
       <div id="layoutList-but" style="position: absolute; top: 0px; padding-top: 18px; line-height: normal; padding-left: 0px; width: auto; visibility: visible;">
-        <a class="g-button" href="javascript:void(0)" style="display: inline-block;" @click="NewFolder">
-          <span class="g-button-right">新建文件夹</span>
+        <a href="javascript:void(0)" style="display: inline-block;" @click="NewFolder">
+          <el-button style="border-radius: 2px;" type="primary" icon="el-icon-edit">新建文件夹</el-button>
         </a>
-        <a class="g-button" href="javascript:void(0)" style="display: inline-block;" @click="Uploadstart">
-          <span class="g-button-right">上传文件</span>
+        <a href="javascript:void(0)" style="display: inline-block;" @click="Uploadstart">
+          <el-button type="primary">上传<i class="el-icon-upload el-icon--right"></i></el-button>
           <span class="text">{{progress}}</span>
         </a>
       </div>
