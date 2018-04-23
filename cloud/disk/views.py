@@ -76,24 +76,42 @@ def findfile (request):
         post = json.loads(request.body.decode('utf-8'))
         userid = post.get('userID')
         findfile_name = post.get('findfile_name')
-        qlist = Folder.objects.filter(userid=userid, foldername =findfile_name)
         list = []
         listid = []
         size = []
         update = []
-        for e in qlist:
-            list.append(e.foldername)
-            listid.append(e.id)
-            size.append(0)
-            update.append(e.update)
         qlist = File.objects.filter(userid=userid, foldername=findfile_name)
         for e in qlist:
             list.append(e.foldername)
             listid.append(e.id)
             size.append(e.size)
             update.append(e.update)
+        le = len(list)
+        qlist = Folder.objects.filter(userid=userid, foldername=findfile_name)
+        ok = False
+        for e in qlist:
+            ok = False
+            for i in range(le):
+                if (listid[i] == e.id):
+                    ok = True
+                    break
+            if ok == False:
+                list.append(e.foldername)
+                listid.append(e.id)
+                size.append(-1)
+                update.append(e.update)
+        list.reverse()
+        listid.reverse()
+        size.reverse()
+        update.reverse()
+        cSize = []
+        for s in size:
+            if s == -1:
+                cSize.append(-1);
+            else:
+                cSize.append(count(s));
         return JsonResponse({'data': 'ok', 'list': list,
-                             'listid': listid, 'size': size, 'update': update})
+                             'listid': listid, 'size': cSize, 'update': update})
     else :
         return JsonResponse({'data': 'no'})
 
