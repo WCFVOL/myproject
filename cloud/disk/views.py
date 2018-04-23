@@ -80,14 +80,14 @@ def findfile (request):
         listid = []
         size = []
         update = []
-        qlist = File.objects.filter(userid=userid, foldername=findfile_name)
+        qlist = File.objects.filter(userid=userid, foldername__contains=findfile_name)
         for e in qlist:
             list.append(e.foldername)
             listid.append(e.id)
             size.append(e.size)
             update.append(e.update)
         le = len(list)
-        qlist = Folder.objects.filter(userid=userid, foldername=findfile_name)
+        qlist = Folder.objects.filter(userid=userid, foldername__contains=findfile_name)
         ok = False
         for e in qlist:
             ok = False

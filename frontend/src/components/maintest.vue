@@ -14,7 +14,7 @@
               <el-menu default-active="3" class="el-menu-vertical-demo">
                 <el-menu-item index="1">
                   <i class="el-icon-menu"></i>
-                  <span slot="title">全部文件</span>
+                  <a href="/#/maintest/?id=0" style="text-decoration:none"><span slot="title">全部文件</span></a>
                 </el-menu-item>
                 <el-menu-item index="2">
                   <i class="el-icon-picture"></i>
@@ -182,6 +182,24 @@ export default {
     },
     quit () {
       this.$router.push({path: '/'})
+    },
+    listall () {
+      let data = {'userID': this.$parent.userID, 'nowid': 0}
+      axios.post('/vueapi/list', data).then((res) => {
+        // console.log(res)
+        if (res.data['data'] === 'ok') {
+          this.all = []
+          this.list = res.data['list']
+          this.listid = res.data['listid']
+          this.size = res.data['size']
+          this.update = res.data['update']
+          for (var i = 0; i < res.data.list.length; i++) {
+            this.all.push({'list': this.list[i], 'listid': this.listid[i], 'size': this.size[i], 'update': this.update[i], 'ok': false})
+          }
+        } else {
+          this.debug = res.data['data']
+        }
+      })
     },
     refresh () {
       if (this.$parent.nickname === undefined) {
